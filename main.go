@@ -67,10 +67,15 @@ func main() {
 	// fmt.Printf("My name is %s and I am %d years old. and my rating is %.2f", name, age, rating)
 	formattedString := fmt.Sprintf("My name is %s and I am %d years old. and my rating is %.2f", name, age, rating)
 	fmt.Println(formattedString)
-	makeCoffee("espresso", true)
+	myCoffe := makeCoffee("espresso", true)
+	fmt.Println(myCoffe)
 }
 
-func makeCoffee(kind string, isSuger bool) {
-	fmt.Printf("Making %s coffee...\n", kind)
-	fmt.Println("Suger added", isSuger)
+func makeCoffee(kind string, isSuger bool) string {
+	// fmt.Printf("Making %s coffee...\n", kind)
+	// fmt.Println("Suger added", isSuger)
+
+	coffee := fmt.Sprintf("%s coffee! And Sugar added: %t", kind, isSuger)
+
+	return coffee
 }
