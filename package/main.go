@@ -4,6 +4,8 @@ import (
 	"learngo_package/payment"
 	// other "learngo_package/payment"  // * type alias
 	"learngo_package/test"
+
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -23,6 +25,9 @@ func main() {
 	mockPm := test.MockPaymentMethod{}
 	paymentService2 := payment.NewPaymentService(mockPm)
 	paymentService2.Checkout()
+
+	color.Red("Prints text in cyan.")
+	color.BgRGB(255, 128, 0).Println("Background orange")
 }
 
 // module -> bunch of packages
