@@ -5,6 +5,16 @@ import "fmt"
 // func makeCoffee() { // outside main function right
 // }
 
+// * init -> First run before main
+// func init(x int) string { // ! func init must have no arguments and no return values
+func init() {
+	fmt.Println("This is init function for calling db...")
+}
+
+func test() {
+	fmt.Println("this is test function")
+}
+
 func main() {
 	//  func makeCoffee () {  // ! inside main function wrong
 	//  }
