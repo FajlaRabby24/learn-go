@@ -31,4 +31,9 @@ func main() {
 
 	fmt.Println(calculate(10, 20, add))
 	fmt.Println(calculate(10, 20, multifly))
+
+	// anonymous callback function
+	fmt.Println(calculate(3, 5, func(x, y int) int {
+		return x - y
+	}))
 }
