@@ -7,9 +7,9 @@ import (
 )
 
 type person struct {
-	Name string `json:"peronName"` // struct tag
-	Age  int    `json:"-"`         // hide field
-	City string `json:"city"`
+	Name string                `json:"personName"` // struct tag
+	Age  int    /*`json:"-"`*/ // hide field
+	City string                `json:"city"`
 }
 
 func main() {
@@ -26,4 +26,15 @@ func main() {
 	}
 
 	fmt.Println(string(rawJson))
+
+	var p2 person
+	jsonText := `{"personName":"John","city":"New York"}`
+	error := json.Unmarshal([]byte(jsonText), &p2)
+	if error != nil {
+		fmt.Println("Error", err)
+	}
+
+	fmt.Println(p2.Name)
+	fmt.Println(p2.Age)
+	fmt.Println(p2.City)
 }
