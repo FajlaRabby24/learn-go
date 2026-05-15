@@ -1,3 +1,5 @@
+// * un-buffered channel
+
 package main
 
 import (
