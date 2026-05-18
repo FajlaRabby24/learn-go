@@ -7,10 +7,10 @@ import (
 )
 
 type User struct {
-	Id    int
-	Name  string
-	Age   int
-	Email string
+	Id    int    `json:"id"`
+	Name  string `json:"name"`
+	Age   int    `json:"age"`
+	Email string `json:"email"`
 }
 
 var users = []User{
@@ -58,8 +58,23 @@ func usersHandler(w http.ResponseWriter, r *http.Request) {
 	// 	return
 	// }
 
+	// w.WriteHeader(http.StatusCreated)
+	// fmt.Fprintln(w, "User created")
+
+	var newUser User
+	err := json.NewDecoder(r.Body).Decode(&newUser)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Invalide request body")
+		return
+	}
+
+	newUser.Id = len(users) + 1
+	users = append(users, newUser)
 	w.WriteHeader(http.StatusCreated)
-	fmt.Fprintln(w, "User created")
+	w.Header().Set("Content-Type", "Application/json")
+	json.NewEncoder(w).Encode(newUser)
+
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
@@ -67,6 +82,8 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 }
 func getUsersHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "Application/json")
-	users, _ := json.Marshal(users)
-	w.Write(users)
+	// users, _ := json.Marshal(users)
+	// w.Write(users)
+	encoder := json.NewEncoder(w)
+	encoder.Encode(users)
 }
