@@ -6,11 +6,12 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", rootHandler)
-	http.HandleFunc("/users", usersHandler)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", rootHandler)
+	mux.HandleFunc("/users", usersHandler)
 
 	fmt.Println("Server is running at port 5000")
-	err := http.ListenAndServe(":5000", nil)
+	err := http.ListenAndServe(":5000", mux)
 	if err != nil {
 		fmt.Println("Server error", err)
 	}
