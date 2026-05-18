@@ -18,7 +18,14 @@ func main() {
 }
 
 func usersHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "List of users")
+	if r.Method != "POST" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		fmt.Fprintln(w, "Method not allowed")
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	fmt.Fprintln(w, "User created")
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
